@@ -1,17 +1,19 @@
 # Game Ping-Pong
-
+#importação de biblioteca
 from tkinter import *
 import random
 import time
 
+#uma variavel que armazena o valor do input do jogador
 level = int(input("Qual nível você gostaria de jogar? 1/2/3/4/5 \n"))
-length = 500/level
+length = 500/level # variavel que divide a variavel nivel por 500
 
 
 root = Tk()
 root.title("Ping Pong")
 root.resizable(0,0)
 root.wm_attributes("-topmost", -1)
+
 
 canvas = Canvas(root, width=800, height=600, bd=0,highlightthickness=0)
 canvas.pack()
@@ -22,8 +24,9 @@ root.update()
 count = 0
 lost = False
 
+#classe
 class Bola:
-    def __init__(self, canvas, Barra, color):
+    def __init__(self, canvas, Barra, color): # metodo e suas propriedades
         self.canvas = canvas
         self.Barra = Barra
         self.id = canvas.create_oval(0, 0, 15, 15, fill=color)
@@ -39,11 +42,12 @@ class Bola:
         self.canvas_width = self.canvas.winfo_width()
 
 
-    def draw(self):
+    def draw(self): #outro metodo com propriedades
         self.canvas.move(self.id, self.x, self.y)
 
         pos = self.canvas.coords(self.id)
 
+        #alguns if's
         if pos[1] <= 0:
             self.y = 3
 
@@ -58,7 +62,7 @@ class Bola:
 
         self.Barra_pos = self.canvas.coords(self.Barra.id)
 
-
+        #mais if's
         if pos[2] >= self.Barra_pos[0] and pos[0] <= self.Barra_pos[2]:
             if pos[3] >= self.Barra_pos[1] and pos[3] <= self.Barra_pos[3]:
                 self.y = -3
@@ -74,7 +78,7 @@ class Bola:
             global lost
             lost = True
 
-
+#class
 class Barra:
     def __init__(self, canvas, color):
         self.canvas = canvas
