@@ -1,0 +1,4 @@
+$ cat .gitattributes
+
+*.ipynb linguist-language=Python 
+*.python linguist-detectable=true
